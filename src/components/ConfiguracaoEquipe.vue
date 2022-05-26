@@ -8,12 +8,12 @@
     <div class="row">
       <div class="col-8">
         {{ equipe }}
-        <p>Enfermeiro: {{ equipe.enfermeiro }}</p>
-        <p>Socorrista: {{ equipe.socorrista }}</p>
-        <p>Médico: {{ equipe.medico }}</p>
-        <p>Carro: {{ $store.state.equipe.carro }}</p>
-        <p>Telefone: {{ $store.state.equipe.telefone }}</p>
-        <p>Kit de reanimação: {{ $store.state.equipe.kitDeReanimacao }}</p>
+        <p>Enfermeiro: {{ e.enfermeiro }}</p>
+        <p>Socorrista: {{ e.socorrista }}</p>
+        <p>Médico: {{ e.medico }}</p>
+        <p>Carro: {{ e.carro }}</p>
+        <p>Telefone: {{ e.telefone }}</p>
+        <p>Kit de reanimação: {{ e.kitDeReanimacao }}</p>
       </div>
       <div class="col-4 text-center">
         <div class="row">
@@ -35,7 +35,15 @@
 import { mapState } from 'vuex';
 
 export default {
-    name: 'ConfiguracaoEquipe',
-    computed: mapState(['equipe']),
+  name: 'ConfiguracaoEquipe',
+  //computed: mapState(['equipe']),
+  /*computed: {
+    e() {
+      return this.$store.state.equipe;
+    }
+  }*/
+  computed: mapState({
+    e: state => state.equipe // 'e' poderia ser chamado do nome que quisesse, e usar no template.
+  })
 }
 </script>
