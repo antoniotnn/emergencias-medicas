@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col">
-        <h5><i class="bi-boxes me-2"></i>Configuração da equipe</h5>
+        <h5><i class="bi-boxes me-2"></i>{{ tituloCustomizadoLocal }}</h5>
       </div>
     </div>
     <div class="row">
@@ -36,6 +36,9 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'ConfiguracaoEquipe',
+  data: () => ({
+    titulo: 'Configuração da Equipe'
+  }),
   //computed: mapState(['equipe']),
   /*computed: {
     e() {
@@ -43,7 +46,11 @@ export default {
     }
   }*/
   computed: mapState({
-    e: state => state.equipe // 'e' poderia ser chamado do nome que quisesse, e usar no template.
+    e: state => state.equipe, // 'e' poderia ser chamado do nome que quisesse, e usar no template.
+
+    tituloCustomizadoLocal(state) {
+      return `${this.titulo} - ${state.equipe.carro}`;
+    }
   })
 }
 </script>
