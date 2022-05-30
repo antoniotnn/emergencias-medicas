@@ -1,5 +1,13 @@
 a<template>
     <div>
+        <div v-if="tipo=='socorristas'">
+            <select class="form-control form-control-sm" v-model="turno">
+                <option value="">Todos</option>
+                <option value="manhã">Manhã</option>
+                <option value="tarde">Tarde</option>
+                <option value="noite">Noite</option>
+            </select>
+        </div>
         <item
             v-for="(item, indice) in itens" 
             :key="indice"
@@ -17,13 +25,16 @@ export default {
     components: { 
         Item
     },
+    data: () => ({
+        turno: ''
+    }),
     props: {
         tipo: String
     },
     computed: {
         ...mapState({
             enfermeiros: state => state.enfermeiros,
-            socorristas: state => state.socorristas,
+            //socorristas: state => state.socorristas,
             medicos: state => state.medicos,
             carros: state => state.equipamentos.carros,
             telefones: state => state.equipamentos.telefones,
@@ -32,7 +43,7 @@ export default {
         itens() {
             switch(this.tipo) {
                 case 'enfermeiros': return this.enfermeiros
-                case 'socorristas': return this.socorristas
+                case 'socorristas': return this.$store.getters.socorristasPorTurno(this.turno, '10', 'abc', 500)
                 case 'medicos': return this.medicos
                 case 'carros': return this.carros
                 case 'telefones': return this.telefones
