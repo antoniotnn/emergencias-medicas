@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col">
-        <h5><i class="bi-boxes me-2"></i>{{ tituloCustomizadoLocal }}</h5>
+        <h5 :class="corTitulo"><i class="bi-boxes me-2"></i>{{ tituloCustomizadoLocal }}</h5>
       </div>
     </div>
     <div class="row">
@@ -45,12 +45,26 @@ export default {
       return this.$store.state.equipe;
     }
   }*/
-  computed: mapState({
-    e: state => state.equipe, // 'e' poderia ser chamado do nome que quisesse, e usar no template.
+  computed: {
 
-    tituloCustomizadoLocal(state) {
-      return `${this.titulo} - ${state.equipe.carro}`;
+    ...mapState({
+      e: state => state.equipe, // 'e' poderia ser chamado do nome que quisesse, e usar no template.
+  
+      tituloCustomizadoLocal(state) {
+        return `${this.titulo} - ${state.equipe.carro}`;
+      }
+    }),
+
+    corTitulo() {
+      let testeLogico = true;
+
+      if(testeLogico) {
+        return 'text-danger';
+      }
+      return 'text-primary';
     }
-  })
+
+  }
+  
 }
 </script>
