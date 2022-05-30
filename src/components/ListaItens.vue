@@ -14,14 +14,14 @@ a<template>
             :dados="item"
         />
         <div v-if="tipo == 'socorristas'">
-            Total: {{ $store.getters.totalSocorristasPorTurno(turno) }}
+            Total: {{ totalSocorristasPorTurno(turno) }}
         </div>
     </div>
 </template>
 
 <script>
 import Item from '@/components/Item.vue'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
     name: 'ListaItens',
@@ -43,10 +43,22 @@ export default {
             telefones: state => state.equipamentos.telefones,
             kitsDeReanimacao: state => state.equipamentos.kitsDeReanimacao,
         }),
+        /*
+        ...mapGetters(['socorristasPorTurno', 'totalSocorristasPorTurno']),
+
+        ...mapGetters({
+            x: 'socorristasPorTurno',
+            y: 'totalSocorristasPorTurno'
+        }),
+        */
+        ...mapGetters({
+            socorristasPorTurno: 'socorristasPorTurno',
+            totalSocorristasPorTurno: 'totalSocorristasPorTurno'
+        }),
         itens() {
             switch(this.tipo) {
                 case 'enfermeiros': return this.enfermeiros
-                case 'socorristas': return this.$store.getters.socorristasPorTurno(this.turno, '10', 'abc', 500)
+                case 'socorristas': return this.socorristasPorTurno(this.turno, '10', 'abc', 500)
                 case 'medicos': return this.medicos
                 case 'carros': return this.carros
                 case 'telefones': return this.telefones
