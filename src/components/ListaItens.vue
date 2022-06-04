@@ -12,6 +12,7 @@ a<template>
             v-for="(item, indice) in itens" 
             :key="indice"
             :dados="item"
+            :tipo="tipo"
         />
         <div v-if="tipo == 'socorristas'">
             Total: {{ totalSocorristasPorTurno(turno) }}

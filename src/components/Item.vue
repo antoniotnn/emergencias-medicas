@@ -8,7 +8,11 @@
         <div class="col-2" v-if="dados.escala" v-text="dados.escala"></div>
         <div class="col-2" v-if="dados.turno" v-text="dados.turno"></div>
         <div class="col-1">
-            <i class="bi-check2-square" style="cursor: pointer"></i>
+            <i 
+                class="bi-check2-square" 
+                style="cursor: pointer"
+                @click="adicionarItemEquipe"
+            ></i>
         </div>
     </div>
 </template>
@@ -17,7 +21,24 @@
 export default {
     name: 'Item',
     props: {
-        dados: Object
+        dados: Object,
+        tipo: String
+    },
+    methods: {
+        adicionarItemEquipe() {
+            //console.log(this.tipo, this.dados);
+
+            //a abordagem INCORRETA (abaixo): que altera o estado centralizado da aplicacao sem user o vuex
+            let t = this.tipo;
+            let d = this.dados;
+
+            t == 'enfermeiros' ? this.$store.state.equipe.enfermeiro = d.nome : null;
+            t == 'socorristas' ? this.$store.state.equipe.socorrista = d.nome : null;
+            t == 'medicos' ? this.$store.state.equipe.medico = d.nome : null;
+            t == 'carros' ? this.$store.state.equipe.carro = d.placa : null;
+            t == 'telefones' ? this.$store.state.equipe.telefone = d.telefone : null;
+            t == 'kits-de-reanimacao' ? this.$store.state.equipe.kitDeReanimacao = d.kit : null;
+        }
     }
 }
 </script>
