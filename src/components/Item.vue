@@ -25,7 +25,18 @@ export default {
         tipo: String
     },
     methods: {
+
         adicionarItemEquipe() {
+            let item = {
+                tipo: this.tipo,
+                dados: this.dados
+            }
+
+            this.$store.commit('setItemEquipe', item);
+        },
+
+
+        adicionarItemEquipeAbordagemIncorreta() {
             //console.log(this.tipo, this.dados);
 
             //a abordagem INCORRETA (abaixo): que altera o estado centralizado da aplicacao sem user o vuex
