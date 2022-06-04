@@ -71,7 +71,14 @@ export default new Vuex.Store({
         totalSocorristasPorTurno: (state, getters) => turno => getters.socorristasPorTurno(turno).length,
     },
     mutations: {
-        setItemEquipe: (state, item) => {
+        //setItemEquipe: (state, item) => {
+        //setItemEquipe: (state, payload) => {
+        setItemEquipe: (state, { item }) => {
+
+            //console.log(payload);
+
+            //let item = payload.item
+            
             let t = item.tipo;
             let d = item.dados;
             
@@ -81,6 +88,7 @@ export default new Vuex.Store({
             if(t == 'carros') state.equipe.carro = d.placa;
             if(t == 'telefones') state.equipe.telefone = d.telefone;
             if(t == 'kits-de-reanimacao') state.equipe.kitDeReanimacao = d.kit;
+            
         }
     }
 });
