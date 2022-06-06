@@ -35,7 +35,20 @@ export default {
         // }),
 
         ...mapMutations({
-            setItemEquipe: 'setItemEquipe'
+            setItemEquipe: 'setItemEquipe',
+
+            setItemEquipeComVerificacao: (commit, payload) => {
+                //camada de lógica antes do commit
+                /*
+                    reserva do item
+                    verificar se o item está disponível,
+                    se sim, marcar no back-end que ele está sendo utilizado por uma equipe,
+                    se nao, apresentar uma msg de contorle indicando que o item já está em uso
+                */
+
+                commit('setItemEquipe', payload);
+            }
+
         }),
 
         adicionarItemEquipe() {
@@ -55,7 +68,9 @@ export default {
 
            //this.x(item);
 
-           this.setItemEquipe(item)
+           //this.setItemEquipe(item);
+
+           this.setItemEquipeComVerificacao(item);
         },
 
 
