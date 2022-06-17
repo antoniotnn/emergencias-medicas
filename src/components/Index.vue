@@ -74,6 +74,16 @@ export default {
       .then(response => response.json())
       .then(dados => this.setMedicos(dados));
 
+    
+    fetch('http://localhost:3001/equipamentos')
+      .then(response => response.json())
+      .then(dados => {
+        
+        this.$store.dispatch('adicionarEquipamentos', dados);
+
+      });
+    
+    /*
     fetch('http://localhost:3001/equipamentos')
       .then(response => response.json())
       .then(dados => {
@@ -81,6 +91,7 @@ export default {
         this.setTelefones(dados);
         this.setKitsDeReanimacao(dados.kitsDeReanimacao);
       });
+    */
   }
 }
 </script>
