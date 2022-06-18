@@ -63,32 +63,10 @@ export default {
   created() {
 
     this.$store.dispatch('fetchEquipamentos');
-
-    fetch('http://localhost:3001/enfermeiros')
-      .then(response => response.json())
-      //.then(dados => this.$store.commit('setEnfermeiros', dados));
-      .then(dados => this.setEnfermeiros(dados));
     
-    fetch('http://localhost:3001/socorristas')
-      .then(response => response.json())
-      .then(dados => this.setSocorristas(dados));
-
-    fetch('http://localhost:3001/medicos')
-      .then(response => response.json())
-      .then(dados => this.setMedicos(dados));
+    this.$store.dispatch('fetchProfissionais');
 
     
-    
-    
-    /*
-    fetch('http://localhost:3001/equipamentos')
-      .then(response => response.json())
-      .then(dados => {
-        this.setCarros(dados.carros);
-        this.setTelefones(dados);
-        this.setKitsDeReanimacao(dados.kitsDeReanimacao);
-      });
-    */
   }
 }
 </script>
