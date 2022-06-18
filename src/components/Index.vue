@@ -61,6 +61,9 @@ export default {
     ...mapMutations(['setEnfermeiros', 'setSocorristas', 'setMedicos', 'setCarros', 'setTelefones', 'setKitsDeReanimacao'])
   },
   created() {
+
+    this.$store.dispatch('fetchEquipamentos');
+
     fetch('http://localhost:3001/enfermeiros')
       .then(response => response.json())
       //.then(dados => this.$store.commit('setEnfermeiros', dados));
@@ -75,13 +78,7 @@ export default {
       .then(dados => this.setMedicos(dados));
 
     
-    fetch('http://localhost:3001/equipamentos')
-      .then(response => response.json())
-      .then(dados => {
-        
-        this.$store.dispatch('adicionarEquipamentos', dados);
-
-      });
+    
     
     /*
     fetch('http://localhost:3001/equipamentos')
