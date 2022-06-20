@@ -12,6 +12,7 @@ export default new Vuex.Store({
             telefone: '',
             kitDeReanimacao: '',
         },
+        equipes: [],
         enfermeiros: [],
         socorristas: [],
         medicos: [],
@@ -74,6 +75,12 @@ export default new Vuex.Store({
         },
         setKitsDeReanimacao: (state, payload) => {
             state.equipamentos.kitsDeReanimacao = payload;
+        },
+        adicionarEquipeEmEquipes: (state, payload) => {
+            //console.log(state.equipes);
+            state.equipes.push(payload);
+            state.equipe = {};
+            console.log(state.equipes);
         }
     },
     actions: {

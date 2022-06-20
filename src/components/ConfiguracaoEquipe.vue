@@ -22,7 +22,13 @@
         </div>
         <div class="row mt-3">
           <div class="col">
-            <button type="button" class="btn btn-primary">Montar equipe</button>
+            <button 
+              type="button" 
+              class="btn btn-primary"
+              @click="montarEquipe"
+            >
+              Montar equipe
+            </button>
           </div>
         </div>              
       </div>
@@ -84,10 +90,19 @@ export default {
       if(this.carro) {
         return 'simples.png';
       }
-      
+
       return 'indefinida.png';
     }
 
+  },
+  methods: {
+    montarEquipe() {
+      //console.log(this.$store.state.equipe);
+      
+      let equipe = Object.assign({}, this.$store.state.equipe);
+      //console.log(equipe);
+      this.$store.commit('adicionarEquipeEmEquipes', equipe);
+    }
   }
   
 }
