@@ -61,10 +61,29 @@ export default {
     ...mapMutations(['setEnfermeiros', 'setSocorristas', 'setMedicos', 'setCarros', 'setTelefones', 'setKitsDeReanimacao']),
 
     //...mapActions(['fetchEquipamentos', 'fetchProfissionais'])
+
+    /*
     ...mapActions({
       fetchEquipamentos: 'fetchEquipamentos',
       fetchProfissionais: 'fetchProfissionais'
     })
+    */
+
+    ...mapActions({
+      fetchEquipamentos: (dispatch, payload) => {
+        //implementar uma lógica
+        //console.log(payload);
+        dispatch('fetchEquipamentos', payload);
+        //implementar outra lógica
+      },
+      fetchProfissionais: (dispatch) => {
+        //implementar lógica
+        dispatch('fetchProfissionais');
+      }
+      
+    })
+
+
   },
   created() {
 
